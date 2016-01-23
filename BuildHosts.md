@@ -54,6 +54,8 @@ Version | Architecture | Host Name | Purpose
 9.0 | x86 | scxbld-sle9-01 | Legacy
 10.0 | x86 | suse-devbuild | Jenkins, Universal Build System
 10.0 | x86_64 | scxom64-sles10-02 | Jenkins, Universal Build System
+10.0 | x86 | scxbldsle101-03 | Duplicate (used for CM)
+10.0 | x86_64 | scxbld64-sle101-01 | Duplicate (used by CM)
 11.0 | x86 | scxcr-sles11-02 | Legacy
 11.0 | x86_64 | scxcr64-sle11-02 | Legacy
 12.0 | x86_64 | bld64-sles12-01 | Legacy
