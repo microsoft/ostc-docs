@@ -82,11 +82,11 @@ Version | Architecture | Host Name | Purpose
 
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
-11i v2 | ia64 | scxhpv2-41 | Jenkins
-11i v2 | pa-risc | scxhpr6 | Jenkins
-11i v3 | ia64 | ostchpv3-10 | Jenkins
-ii1 v3 | pa-risc | ostcbldpa-hp1131-01 | Jenkins
-ii1 v3 | pa-risc | scxhpr1 | Unknown
+11.23 | ia64 | scxhpv2-41 | Jenkins
+11.23 | pa-risc | scxhpr6 | Jenkins
+11.31 | ia64 | ostchpv3-10 | Jenkins
+11.31 | pa-risc | ostcbldpa-hp1131-01 | Jenkins
+11.31 | pa-risc | scxhpr1 | Unknown
 
 
 ##### Solaris Systems
