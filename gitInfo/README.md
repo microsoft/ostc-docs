@@ -2,6 +2,6 @@
 
 * [Installing git on Linux systems](linux.md)
 * Installing git on UNIX systems
-  * AIX
+  * [AIX](aix.md)
   * HP-UX
   * Solaris
