@@ -9,7 +9,7 @@ Table of Contents:
 
 * [sudo configuration](#sudoers-configuration)
 * Machine-specific Setup Requirements
-  * [HP-UX openssl.pc files](#hp-ux-openssl.pc-files)
+  * [HP-UX openssl.pc files](#hp-ux-openssl-pkg-config-files)
 
 -----
 
@@ -44,7 +44,7 @@ under your personal account with the following sequence:
 
 -----
 
-#### HP-UX openssl.pc files
+#### HP-UX openssl pkg-config files
 
 Many projects require linking against OpenSSL. For consistency, such
 projects often use [pkg-config](https://en.wikipedia.org/wiki/Pkg-config)
