@@ -14,5 +14,5 @@ Please keep this in mind when adding documentation to this repository.
   2. [Installing git on UNIX/Linux](gitInfo/README.md)
 2. Setup Instructions for Code Contributors
   1. [Setting up a machine for build purposes](setup/build.md)
-  2. Setting up git enviroonment
+  2. Setting up git environment
 3. Workflow for Code Contributors

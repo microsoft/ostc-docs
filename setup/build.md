@@ -48,3 +48,40 @@ under your personal account with the following sequence:
 
 Many projects require linking against OpenSSL. For consistency, such
 projects often use [pkg-config](https://en.wikipedia.org/wiki/Pkg-config)
+to get include file and linkage library information. Unfortunately, on the
+HP-UX platform, these files are wrong, causing problems when programs are
+later installed on the destination system.
+
+A sample openssl.pc file (for HP-UX 11.23 ia64) looks like this:
+
+```
+prefix=/opt/openssl
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib/hpux32
+includedir=${prefix}/include
+
+Name: OpenSSL
+Description: Secure Sockets Layer and cryptography libraries and tools
+Version: 0.9.7l
+Requires: 
+Libs: -L${libdir} -lssl -lcrypto  -Wl,+s -ldl
+Cflags: -I${includedir} 
+```
+
+Two changes were made:
+
+* The *libdir* line has appended ```/hpux32``` to actually properly refer
+to the library location.
+* The *Libs* line has ```-lz``` removed from the end. In reality, OpenSSL
+does not appear to require libz.sl or libz.so, and including that here can
+cause problems if the destination system does not have that library.
+
+These errors are consistent for HP-UX openssl.pc files. Changes must be
+made to four sets of OpenSSL libraries:
+
+Version | Architecture | File Path
+------- | ------------ | ---------
+11.23 | ia64 | /opt/openssl/lib/hpux32/pkgconfig/openssl.pc
+11.23 | parisc | /opt/openssl/lib/hpux32/pkgconfig/openssl.pc
+11.31 | ia64 | /opt/openssl/lib/pkgconfig/openssl.pc
+11.31 | parisc | /opt/openssl/lib/pkgconfig/openssl.pc
