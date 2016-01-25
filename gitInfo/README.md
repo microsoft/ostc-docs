@@ -4,4 +4,4 @@
 * Installing git on UNIX systems
   * [AIX](aix.md)
   * HP-UX
-  * Solaris
+  * [Solaris](solaris.md)
