@@ -17,3 +17,5 @@ Please keep this in mind when adding documentation to this repository.
   1. [Setting up a machine for build purposes](setup/build.md)
   2. [Setting up git environment](setup/git-setup.md)
 3. Workflow for Code Contributors
+  1. [Branching Strategy](workflow/branching.md)
+  2. [Workflow for Development](workflow/workflow.md)
