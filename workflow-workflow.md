@@ -34,7 +34,7 @@ pal, etc) chekout the *master* branch since it is where active
 development is being made:<br>```git fetch; git checkout master```<br>
 If you have just cloned the super-project, you can also use an alias
 like ```git co-master``` if you followed [Configuring git]
-(../setup/git-setup.md) recommendations.
+(setup-git.md) recommendations.
 
 - From the master branch, create a feature branch where you will add
 your contribution. By convention, for feature branch names, we use the
@@ -42,7 +42,7 @@ format ```<username>-<feature_name>```, like:<br> ```git checkout -b
 jeff-service```
 
 - Use of 'git rebase' is suggested to keep feature branches up to
-date. [Configure git](../setup/git-setup.md) for this to work
+date. [Configure git](setup-git.md) for this to work
 properly.  See [rerere documentation]
 (https://git-scm.com/docs/git-rerere) and [rebasing documentation]
 (https://www.git-scm.com/book/en/v2/Git-Branching-Rebasing) for
@@ -134,14 +134,14 @@ necessary, be certain to commit them to your feature branch.
 #### Cleanup
 You should clean up your old branches. To do so:
 
-- Delete remote branch. If you [configured git](../setup/git-setup.md),
+- Delete remote branch. If you [configured git](setup-git.md),
 <br>```git rmrbranch <branch-name>```
 
 - Delete local branch:<br>```git branch -d <branch-name>```
 
 #### Managing submodules
 
-Assuming you [configured git](../setup/git-setup.md), the following
+Assuming you [configured git](setup-git.md), the following
 show common ways to manage all the submodules (all from the 
 super-project):
 

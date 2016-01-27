@@ -24,7 +24,7 @@ variety of SSH programs. Some examples are:
   2. [SecureCRT](https://www.vandyke.com/products/securecrt/index.html)/[SecureFX]
      (https://www.vandyke.com/products/securefx/index.html) bundle, [Configure SecureCRT]
      (https://www.vandyke.com/support/tips/agent_forwarding.html#agent)
-  3. [MobaXterm] (http://mobaxterm.mobatek.net/), [Configure MobaXterm] (MobaXterm-config.md)
+  3. [MobaXterm] (http://mobaxterm.mobatek.net/), [Configure MobaXterm] (setup-MobaXterm.md)
 
 Other SSH programs exist as well, or you can use the
 [SSH Agent] (http://sshkeychain.sourceforge.net/mirrors/SSH-with-Keys-HOWTO/SSH-with-Keys-HOWTO-6.html)
