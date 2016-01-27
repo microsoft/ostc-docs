@@ -27,3 +27,6 @@ has useful links on how to use git.
 3. Workflow for Code Contributors
   1. [Branching Strategy](workflow-branching.md)
   2. [Workflow for Development](workflow-workflow.md)
+4. Administrative Information
+  1. [Tagging Releases](workflow-tagging.md)
+  2. Creating a Hotfix Release
