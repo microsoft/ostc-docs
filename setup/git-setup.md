@@ -58,6 +58,9 @@ with git faster and easier.
 ```
 git config --global user.name "Your Name"
 git config --global user.email youremailaddress@yourdomain.com
+
+git config --global pull.ff only
+git config --global push.default current
 ```
 
 * Strongly suggested settings:
@@ -66,8 +69,6 @@ git config --global am.threeWay true
 git config --global apply.ignoreWhitespace change
 git config --global core.excludesfile ~/.gitignore
 git config --global log.decorate short
-git config --global pull.ff only
-git config --global push.default current
 git config --global rerere.enabled true
 git config --global rerere.autoUpdate true
 ```
