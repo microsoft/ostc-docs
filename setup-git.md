@@ -56,8 +56,8 @@ with git faster and easier.
 
 * Mandatory settings (**replace name/email with your own**):
 ```
-git config --global user.name "Your Name"
-git config --global user.email youremailaddress@yourdomain.com
+git config --global user.name "First Last"
+git config --global user.email alias@microsoft.com
 
 git config --global pull.ff only
 git config --global push.default current
