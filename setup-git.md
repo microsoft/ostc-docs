@@ -86,7 +86,7 @@ git config --global url."git@github.com:".insteadOf "https://github.com/"
 
 * Useful Aliases:
 ```
-git config --global alias.co-master '!git submodule foreach git checkout master'
+git config --global alias.co-master '!git checkout master && git submodule foreach git checkout master'
 git config --global alias.lol 'log --oneline --graph'
 git config --global alias.nuke '!git clean -fdx && git submodule foreach git clean -fdx'
 git config --global alias.sub-status '!git submodule foreach git status'
