@@ -94,6 +94,7 @@ echo test > test.txt
 git add test.txt
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
+git config --global push.default current
 git commit -m "test message"
 git push
 git push origin --delete test-branch
