@@ -84,7 +84,8 @@ Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
 11.23 | ia64 | scxhpv2-41 | Legacy
 11.23 | pa-risc | scxhpr6 | Legacy
-11.31 | ia64 | ostchpv3-10 | Jenkins
+11.31 | ia64 | ostcbld-ux31-01 | Jenkins
+11.31 | ia64 | ostchpv3-10 | Was Jenkins, now unknown
 11.31 | pa-risc | ostcbldpa-hp1131-01 | Jenkins
 11.31 | pa-risc | scxhpr1 | Unknown
 
