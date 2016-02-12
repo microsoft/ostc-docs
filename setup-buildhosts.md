@@ -75,7 +75,7 @@ Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
 5.3 | ppc | ostcbld-aix53-01 | Legacy
 6.1 | ppc | ostcbld-aix61-01 | Jenkins
-7.1 | ppc | scxbld-aix71-01 | Jenkins
+7.1 | ppc | scxbld-aix71-02 | Jenkins
 
 
 ##### HP-UX Systems
