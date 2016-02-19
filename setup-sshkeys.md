@@ -30,7 +30,7 @@ To create a public/private key:
 * Use ssh-keygen. Do this from your “primary” UNIX machine (where you do
 most of your development). This will be something like:
 ```
-ssh-keygen -t dsa -b 2048 -C "Microsoft-internal"
+ssh-keygen -t dsa -b 1024 -C "Microsoft-internal"
 ```
 
 Resulting output will be something like:
