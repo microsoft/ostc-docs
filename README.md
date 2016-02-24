@@ -1,6 +1,6 @@
 # ostc-docs
 
-Documentation for the OSTC team
+Documentation for the Open Source Technology Center (OSTC) team.
 
 Please note that this is a public repository, and I'd like to keep it
 public so other public repositories can refer to sections of this
