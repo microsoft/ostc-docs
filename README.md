@@ -30,4 +30,4 @@ has useful links on how to use git.
   2. [Workflow for Development](workflow-workflow.md)
 4. Administrative Information
   1. [Tagging Releases](workflow-tagging.md)
-  2. Creating a Hotfix Release
+  2. [Creating a Hotfix Release](workflow-hotfix.md)
