@@ -18,8 +18,10 @@ has useful links on how to use git.
 
 1. Infrastructure Information
   1. [Build Hosts](setup-buildhosts.md)
-  2. [Set up Hyper-V DNS configuration](https://github.com/jeffaco/msft-updatedns)
-  3. [Installing git on UNIX/Linux](gitinstall-readme.md)
+  2. Development Hosts
+  3. [Set up Hyper-V DNS configuration](https://github.com/jeffaco/msft-updatedns)
+  4. [Installing git on UNIX/Linux](gitinstall-readme.md)
+  5. [Setting up Mac OS/X systems](setup-macosx.md)
 2. Setup Instructions for Code Contributors
   1. [Setting up SSH public/private keys](setup-sshkeys.md)
   2. [Setting up git environment](setup-git.md)

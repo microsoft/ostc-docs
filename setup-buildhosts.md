@@ -12,6 +12,9 @@ are, without a doubt, other build servers.
 Note that Jenkins keeps a build history for each host. To see this, select
 the host in question and click "Build History".
 
+An [alternate list](http://scxomt-ws8-07.scx.com/ostcsystems.php),
+without the "Purpose" field, may be useful to you as well.
+
 -----
 
 * Linux Build Systems
@@ -30,8 +33,8 @@ the host in question and click "Build History".
 
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
-5.0 | x86    | scxombld-cent5-01 | Jenkins (OMS-Agent only)
-5.0 | x86_64 | scxombld64-cent5-01 | Jenkins (OMS-Agent only)
+5.0 | x86    | osbld-cent5-01 | Jenkins (OMS-Agent only)
+5.0 | x86_64 | osbld64-cent5-01 | Jenkins (OMS-Agent only)
 
 
 ##### RedHat Build Systems
@@ -52,10 +55,8 @@ Version | Architecture | Host Name | Purpose
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
 9.0 | x86 | scxbld-sle9-01 | Legacy
-10.0 | x86 | suse-devbuild | Jenkins, Universal Build System
-10.0 | x86_64 | scxom64-sles10-02 | Jenkins, Universal Build System
-10.0 | x86 | scxbldsle101-03 | Duplicate (used for CM)
-10.0 | x86_64 | scxbld64-sle101-01 | Duplicate (used by CM)
+10.0 | x86 | osbld-sles10-01 | Jenkins, Universal Build System
+10.0 | x86_64 | osbld64-sles10-01 | Jenkins, Universal Build System
 11.0 | x86 | scxcr-sles11-02 | Legacy
 11.0 | x86_64 | scxcr64-sle11-02 | Legacy
 12.0 | x86_64 | bld64-sles12-01 | Legacy
@@ -74,8 +75,8 @@ Version | Architecture | Host Name | Purpose
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
 5.3 | ppc | ostcbld-aix53-01 | Legacy
-6.1 | ppc | ostcbld-aix61-01 | Jenkins
-7.1 | ppc | scxbld-aix71-02 | Jenkins
+6.1 | ppc | osbld-aix61-01 | Jenkins
+7.1 | ppc | osbld-aix71-01 | Jenkins
 
 
 ##### HP-UX Systems
@@ -83,11 +84,9 @@ Version | Architecture | Host Name | Purpose
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
 11.23 | ia64 | osbldia-hpux23-01 | Legacy
-11.23 | pa-risc | scxhpr6 | Legacy
-11.31 | ia64 | ostcbld-ux31-01 | Jenkins
-11.31 | ia64 | ostchpv3-10 | Was Jenkins, now unknown
-11.31 | pa-risc | ostcbldpa-hp1131-01 | Jenkins
-11.31 | pa-risc | scxhpr1 | Unknown
+11.23 | pa-risc | osbldpa-hpux23-01 | Legacy
+11.31 | ia64 | osbldia-hpux31-01 | Jenkins
+11.31 | pa-risc | osbldpa-hpux31-01 | Jenkins
 
 
 ##### Solaris Systems
@@ -96,6 +95,6 @@ Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
 9.0 | sparc | scxrrsun13 | Legacy
 10.0 | x86 | scxbld-sol10-02 | Jenkins
-10.0 | sparc | ostcbld-sparc10-01 | Jenkins
+10.0 | sparc | osbldsp-sol10-01 | Jenkins
 11.0 | x86 | scxbld-sol11-04 | Jenkins
 11.0 | sparc | scxbld-sparc11-01 | Jenkins
