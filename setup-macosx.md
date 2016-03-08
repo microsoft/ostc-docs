@@ -152,7 +152,7 @@ To set up the hostname for the system, launch a command terminal and type:
 sudo scutil --set HostName <hostname>
 ```
 
-where <hostname> is the name of your host. Do not append scx.com to
+where `<hostname>` is the name of your host. Do not append scx.com to
 the hostname.
 
 #### Install updatedns
