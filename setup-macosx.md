@@ -197,7 +197,12 @@ mv /Applications/Install\ OS\ X\ El\ Capitan.app ~/Desktop
 
 Once the operating to install is placed at the desktop:
 
-* Launch VMware Fusion,
+* Launch VMware Fusion. This can be done via the Applications folder
+via the finder, or by clicking magnifying glass on menu bar and typing
+"VMware" in the spotlight window and hitting return. Note that if
+VMware Fusion is already running (normally the case for virtual
+machines to be running), select *Window / Virtual Machine Library*
+from the menu bar once VMware Fusion is selected,
 * Select *Add* (+v) from the upper left of the window,
 * Drag *Install OS X El Capitan* from your desktop to the "Install
 from disk or image" section of the "Select the installation Method"
