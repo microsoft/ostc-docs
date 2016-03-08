@@ -94,7 +94,7 @@ Version | Architecture | Host Name | Purpose
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
 9.0 | sparc | scxrrsun13 | Legacy
-10.0 | x86 | scxbld-sol10-02 | Jenkins
+10.0 | x86 | osbldsp-sol11-01 | Jenkins
 10.0 | sparc | osbldsp-sol10-01 | Jenkins
-11.0 | x86 | scxbld-sol11-04 | Jenkins
-11.0 | sparc | scxbld-sparc11-01 | Jenkins
+11.0 | x86 | osbld86-sol11-01 | Jenkins
+11.0 | sparc | osbldsp-sol11-01 | Jenkins
