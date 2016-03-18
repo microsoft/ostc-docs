@@ -6,6 +6,7 @@ project.
 - [Setup](#setup)
 - [Code](#code)
 - [Review](#review)
+- [Merge](#merge)
 - [Cleanup](#cleanup)
 - [Managing Submodules](#managing-submodules)
 
