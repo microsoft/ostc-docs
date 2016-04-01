@@ -7,10 +7,12 @@ purposes.
 The basic steps to creating a hotfix release are:
 
 1. [Check in your patches](#check-in-your-patches)
-2. [Set subproject references](#set-subproject-references)
-3. [Set up superproject](#set-up-superproject)
-4. [Build your project](#build-your-project)
-5. [Create tags and clean up](#create-tags-and-clean-up)
+2. [Using git with more complex code merges](#using-git-with-more-complex-code-merges)
+3. [Set subproject references](#set-subproject-references)
+4. [Set up superproject](#set-up-superproject)
+5. [Build your project with PBUILD](#build-your-project-with-pbuild)
+6. [Create tags and clean up](#create-tags-and-clean-up)
+7. [Create formal release build](#create-formal-release-build)
 
 All command examples assume you followed [Setting up git][] guidelines.
 
@@ -49,6 +51,52 @@ git commit -m "Fix parameters passed to omsadmin.sh for onboarding"
 
 Obviously, other changes can be made to other files as part of this
 hotfix.
+
+### Using git with more complex code merges
+
+This document assumes a simple change. More complex cases can be
+completed by using `git cherry-pick` to get a set of targetted changes
+onto your branch, or by using `git merge` to merge in specific commit
+hashes. General workflow for this is as follows:
+
+- Cherry-pick which commit you want added to the current branch:
+```
+git cherry-pick e596ded
+```
+
+In case of conflict such as:
+
+>
+````
+error: could not apply 81e0723... 
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add <paths>' or 'git rm <paths>'
+hint: and commit the result with 'git commit'
+```
+>
+
+then perform one of the following:
+
+```
+git status        # show which files have conflict, resolve the conflict then commit
+git commit -c 81e0723
+   --or--
+git cherry-pick continue
+```
+
+- When you try to cherry pick a merged commit you may get:
+
+>
+```
+fatal: Commit e596ded is a merge but no -m option was given.
+```
+>
+
+To avoid this issue, use merge instead, like this:
+
+```
+git merge e596ded
+```
 
 ### Set subproject references
 
@@ -190,30 +238,24 @@ git commit -m "Hotfix (v1.1.0-64) to resolve onboarding parameters"
 git push
 ```
 
-### Build your project
+### Build your project with PBUILD
 
 We now have the superproject set up with a branch (`jeff-hotfix`) to
 reflect the exact changes that we need to build our hotfix with, but
 in terms of the omsagent.verison file and in terms of the commit
 hashes for each of the subprojects.
 
-To build this, under Jenkins, we have a special build job called
-`OMSAgent-Manual`. This differs from the regular `OMSAgent-Build` job
-in two ways:
-
-1. It makes no changes at all to omsagent.version, nor to any commit
-hashes for subprojects, and
-2. When `OMSAgent-Manual` is run, it prompts for a tag or branch to
-build with.
-
-Run the `OMSAgent-Manual` and supply to branch to the superproject
-that should be used with the build (`jeff-hotfix`).
+To test this, you should build your project using [PBUILD][]. Note
+that if you invoke PBUILD using the `--branch=jeff-hotfix` qualfier,
+then PBUILD will apply all of your changes specfied in the
+superproject, with proper commit hashes, prior to performing the
+build.
 
 If there are build failures, fix the sources as needed to resolve them
-(consider using `commit --amend` as documented in
-[Workflow for Development](workflow-workflow.md)
-to keep the commit logs clean). Be sure to update the superproject to
-the new commit hashes before trying any additional builds.
+(consider using `commit --amend` as documented in [Workflow for
+Development][] to keep the commit logs clean). Be sure to update the
+superproject to the new commit hashes before trying any additional
+builds.
 
 Once you have built successfully and verified that the kit has the
 required fixes for your hotfix, you need to *clean up* as specified
@@ -274,7 +316,7 @@ Next, we perform the identical procedure to the superproject:
 ```
 cd ..
 git checkout master
-git tag -D jeff-hotfix
+git branch -D jeff-hotfix
 ```
 
 Note the output from `git tag -D jeff-hotfix`:
@@ -292,8 +334,28 @@ git tag v1.1.0-64-hotfix
 git push --tags
 ```
 
-You've deleted all of your temporary branches and created tags, so
-we're done!
+You've now deleted all of your temporary branches and created tags,
+just one more step!
+
+### Create formal release build
+
+To build this, under Jenkins, we have a special build job called
+`OMSAgent-Manual`. This differs from the regular `OMSAgent-Build` job
+in two ways:
+
+1. It makes no changes at all to omsagent.version, nor to any commit
+hashes for subprojects, and
+2. When `OMSAgent-Manual` is run, it prompts for a tag or branch to
+build with.
+
+Run the `OMSAgent-Manual` and supply the tag created during the
+[Create tags and clean up](#create-tags-and-clean-up) step above (in
+this example, the tag was `v1.1.0-64-hotfix`). This will run the
+Jenkins build with that specific tag, creating formal shell bundles
+for distribution to customers.
+
+Since you tested using [PBUILD][] prior to cleanup, there should be
+no Jenkins build errors.
 
 
 [Setting up git]: setup-git.md
@@ -304,3 +366,5 @@ we're done!
 [omsagent.conf]: https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/installer/conf/omsagent.conf
 [Git Tagging/Branching Mechanisms]: workflow-branching.md
 [garbage collect]: http://think-like-a-git.net/sections/graphs-and-git/garbage-collection.html
+[PBUILD]: https://github.com/MSFTOSSMgmt/pbuild
+[Workflow for Development]: workflow-workflow.md
