@@ -86,7 +86,7 @@ Version | Architecture | Host Name | Purpose
 11.23 | ia64 | osbldia-hpux23-01 | Legacy
 11.23 | pa-risc | osbldpa-hpux23-01 | Legacy
 11.31 | ia64 | osbldia-hpux31-01 | Jenkins
-11.31 | pa-risc | osbldpa-hpux31-01 | Jenkins
+11.31 | pa-risc | osbldpa-hpux31-01 | Legacy
 
 
 ##### Solaris Systems
