@@ -5,7 +5,8 @@ project.
 
 - [Setup](#setup)
 - [Code](#code)
-- [Review](#review)
+- [Pull Requests](#pull-requests)
+- [Reviewing Changes](#reviewing-changes)
 - [Merge](#merge)
 - [Cleanup](#cleanup)
 - [Managing Submodules](#managing-submodules)
@@ -78,9 +79,10 @@ git commit --amend -m "commit message"
 git push --force
 ```
 
-- When your code is tested, you are ready to [review](#review).
+- When your code is tested, you are ready to create a [Pull Request]
+(#pull-requests) to ask for code reviews.
 
-#### Review
+#### Pull Requests
 
 - On the GitHub page for the project that you are modifying, create a
 new pull request. The following list is a list of pages for some of
@@ -104,8 +106,19 @@ that is appropriate for reviews on your project.
 - If you need to make new changes based on review, you can just update
 your branch with further commits and ask for additional reviews.
 
+#### Reviewing Changes
+
 - Reviewers can sign off by leaving a comment on the *conversation*
 tab of the pull request.
+
+- Experience dictates that Internet Explorer is slow for large pull
+requests (with long lists of changes). Chrome is faster for purposes
+of reviewing long pull requests.
+
+- Note that [CodeFlow](http://codeflow/content/workflows-github-pullrequest.html)
+now works with GitHub ([CodeFlow](http://codeflow/content/welcome.html)
+is a Microsoft internal tool). Give that a try if you prefer that
+interface.
 
 #### Merge
 
