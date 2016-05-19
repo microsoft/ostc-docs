@@ -12,7 +12,7 @@ are, without a doubt, other build servers.
 Note that Jenkins keeps a build history for each host. To see this, select
 the host in question and click "Build History".
 
-An [alternate list](http://scxomt-ws8-07.scx.com/ostcsystems.php),
+An [alternate list](http://scxomt-ws8-07.scx.com/index.php),
 without the "Purpose" field, may be useful to you as well.
 
 -----
