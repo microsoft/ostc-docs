@@ -366,5 +366,5 @@ no Jenkins build errors.
 [omsagent.conf]: https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/installer/conf/omsagent.conf
 [Git Tagging/Branching Mechanisms]: workflow-branching.md
 [garbage collect]: http://think-like-a-git.net/sections/graphs-and-git/garbage-collection.html
-[PBUILD]: https://github.com/MSFTOSSMgmt/pbuild
+[PBUILD]: https://github.com/Microsoft/pbuild
 [Workflow for Development]: workflow-workflow.md

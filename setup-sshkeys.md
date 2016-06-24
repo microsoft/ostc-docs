@@ -17,7 +17,7 @@ again when logging on to UNIX/Linux systems. It works from putty on
 Windows as well, along with SecureCRT and other popular terminal
 emulators supporting the SSH protocol. Very, very useful.
 
-Also, [PBUILD](https://github.com/MSFTOSSMgmt/pbuild) requires use of
+Also, [PBUILD](https://github.com/Microsoft/pbuild) requires use of
 public/private keys to work properly. This mechanism only works if you
 use a non-shared account. **We do not** recommend that you set this up on
 some shared account (i.e. root).
