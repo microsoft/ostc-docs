@@ -41,40 +41,42 @@ Version | Architecture | Host Name | Purpose
 
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
-4.0 | x86 | scxbld-rhel4-02 | Legacy
-4.0 | x86_64 | scxbld64-rh40-01 | Legacy
-5.0 | x86 | scxbld-rhe50-01 | Legacy
-5.0 | x86_64 | scxbld64-rh5-02 | Legacy
-6.0 | x86 | scxbld-rhel6-01 | Legacy
-6.0 | x86_64 | scxbld64-rhel6-01 | Legacy
-7.0 | x86_64 | ostcbld64-rhel7-01 | Legacy
+4.0 | x86 | osbld-rhel4-01 | Legacy
+4.0 | x86_64 | osbld64-rh40-01 | Legacy
+5.0 | x86 | osbld-rhe5-01 | Legacy
+5.0 | x86_64 | osbld64-rhel5-01 | Legacy
+6.0 | x86 | osbld-rhel6-01 | Legacy
+6.0 | x86_64 | osbld64-rhel6-01 | Legacy
+7.0 | x86_64 | osbld64-rhel7-01 | Legacy
 
 
 ##### SuSE Build Systems
 
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
-9.0 | x86 | scxbld-sle9-01 | Legacy
+9.0 | x86 | osbld-sle9-01 | Legacy
 10.0 | x86 | osbld-sles10-01 | Jenkins, Universal Build System
+10.0 | x86 | osvmb-sles10-01 | Legacy, VMM Build System
 10.0 | x86_64 | osbld64-sles10-01 | Jenkins, Universal Build System
-11.0 | x86 | scxcr-sles11-02 | Legacy
-11.0 | x86_64 | scxcr64-sle11-02 | Legacy
-12.0 | x86_64 | bld64-sles12-01 | Legacy
+10.0 | x86_64 | osvmb64-sles10-01 | Legacy, VMM Build System
+11.0 | x86 | osbld-sles11-01 | Legacy
+11.0 | x86_64 | osbld64-sle11-01 | Legacy
+12.0 | x86_64 | osbld64-sles12-01 | Legacy
 
 
 ##### Debian Build Systems
 
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
-5.0 | x86 | scxomb-deb5-01 | Legacy
-5.0 | x86_64 | scxomb64-deb5-01 | Legacy
+5.0 | x86 | osbld-deb5-01 | Legacy
+5.0 | x86_64 | osbld64-deb5-01 | Legacy
 
 
 ##### AIX Systems
 
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
-5.3 | ppc | ostcbld-aix53-01 | Legacy
+5.3 | ppc | osbld-aix53-01 | Legacy
 6.1 | ppc | osbld-aix61-01 | Jenkins
 7.1 | ppc | osbld-aix71-01 | Jenkins
 
@@ -93,8 +95,8 @@ Version | Architecture | Host Name | Purpose
 
 Version | Architecture | Host Name | Purpose
 ------- | ------------ | --------- | -------
-9.0 | sparc | scxrrsun13 | Legacy
-10.0 | x86 | osbldsp-sol11-01 | Jenkins
+9.0 | sparc | osbldsp-sol9-01 | Legacy
+10.0 | x86 | osbld86-sol11-01 | Jenkins
 10.0 | sparc | osbldsp-sol10-01 | Jenkins
 11.0 | x86 | osbld86-sol11-01 | Jenkins
 11.0 | sparc | osbldsp-sol11-01 | Jenkins
