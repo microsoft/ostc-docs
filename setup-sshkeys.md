@@ -30,19 +30,19 @@ To create a public/private key:
 * Use ssh-keygen. Do this from your “primary” UNIX machine (where you do
 most of your development). This will be something like:
 ```
-ssh-keygen -t dsa -b 1024 -C "Microsoft-internal"
+ssh-keygen -t rsa -b 2048 -C "Microsoft-internal"
 ```
 
 Resulting output will be something like:
 
 >
 ```
-Generating public/private dsa key pair.
-Enter file in which to save the key (/home/jeffcof/.ssh/id_dsa): 
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/jeffcof/.ssh/id_rsa): 
 Enter passphrase (empty for no passphrase): 
 Enter same passphrase again: 
-Your identification has been saved in /home/jeffcof/.ssh/id_dsa.
-Your public key has been saved in /home/jeffcof/.ssh/id_dsa.pub.
+Your identification has been saved in /home/jeffcof/.ssh/id_rsa.
+Your public key has been saved in /home/jeffcof/.ssh/id_rsa.pub.
 The key fingerprint is:
 68:8e:50:3c:8d:cc:fa:77:2b:ad:cc:88:d6:5f:2f:4a Microsoft-internal
 ```
@@ -59,20 +59,20 @@ firewall (i.e. when connecting from work to home, that has a
 passphrase), or if you're connecting to a secure system. But that’s
 not the case here.
 
-* This will create two files in your .ssh directory: id_dsa and id_dsa.pub
+* This will create two files in your .ssh directory: id_rsa and id_rsa.pub
 
 * Create a link for authorized keys (basically, this is the list of keys
 that can be remotely used to log in):
-  * Create a link from id_dsa.pub with a command like:<br>
-        `(cd ~/.ssh; ln -s id_dsa.pub authorized_keys)`
+  * Create a link from id_rsa.pub with a command like:<br>
+        `(cd ~/.ssh; ln -s id_rsa.pub authorized_keys)`
   * Tar up your .ssh directory: `tar –cf ssh.tar .ssh`
   * Copy the ssh.tar file to each of your remote systems and untar it.
-  * Be sure that the .ssh directory has a permission of 700 or things won’t work!
+  * Be sure that the .ssh directory has a permission of 700 or things won’t work! Also, the private key file (id_rsa) must have a permission of 600.
 
 So, to summarize: Create the public/private key. Copy the key files to each
-of your remote systems. On each remote system, .ssh/id_dsa.pub should exist,
-.ssh/id_dsa (the private key) should exist, and authorized_keys should exist
-and should be a link to .ssh/id_dsa.pub.
+of your remote systems. On each remote system, .ssh/id_rsa.pub should exist,
+.ssh/id_rsa (the private key) should exist, and authorized_keys should exist
+and should be a link to .ssh/id_rsa.pub.
 
 This gets you the ability to SSH and SCP from Linux/Unix system to Linux/Unix
 system without password prompts. You can use this same public/private key,
