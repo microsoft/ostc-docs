@@ -43,6 +43,16 @@ your contribution. By convention, for feature branch names, we use the
 format ```<username>-<feature_name>```, like:<br> ```git checkout -b
 jeff-service```
 
+- Commit messages should be no more than about 70 bytes per line. If
+you need a longer commit message than that, please use a multi-line
+commit message, like this:
+
+> Short summary of your change
+>
+> Longer description of your change. This description can contain as
+> many lines as needed to describe what you have done. Each line
+> should be no more than about 70 bytes in length.
+
 - Use of 'git rebase' is suggested to keep feature branches up to
 date. [Configure git](setup-git.md) for this to work
 properly.  See [rerere documentation]
@@ -58,6 +68,8 @@ git rebase master
 ```
 
 #### Code
+
+- Create and switch to a new branch as mentioned above with a command like:<br>`git checkout -b user-featurename`.
 
 - Make the changes as needed, test them out
 
@@ -78,6 +90,10 @@ git add <changed files>
 git commit --amend -m "commit message"
 git push --force
 ```
+
+If you use `git commit --amend`, an editor will be launched for you
+to change the commit message. To use the identical commit message as
+earlier, use `git commit --amend --no-edit`.
 
 - When your code is tested, you are ready to create a [Pull Request]
 (#pull-requests) to ask for code reviews.
