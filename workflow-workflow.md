@@ -9,6 +9,7 @@ project.
 - [Reviewing Changes](#reviewing-changes)
 - [Merge](#merge)
 - [Cleanup](#cleanup)
+- [Resolving Merge Conflicts](#resolving-merge-conflicts)
 - [Managing Submodules](#managing-submodules)
 
 -----
@@ -153,7 +154,9 @@ git rebase master
 ```
 
 - Resolve any merge conflicts that may be necessary. If changes are
-necessary, be certain to commit them to your feature branch.
+necessary, be certain to commit them to your feature branch. If you
+need help on how to resolve a merge conflict, see
+[below](#resolving-merge-conflicts).
 
 - Go to the master branch:<br>```git checkout master```
 
@@ -168,6 +171,208 @@ You should clean up your old branches. To do so:
 <br>```git rmrbranch <branch-name>```
 
 - Delete local branch:<br>```git branch -d <branch-name>```
+
+#### Resolving Merge Conflicts
+
+When rebasing your changes to the master branch, you may get a merge
+conflict. If that happens, you'll see output like:
+
+```
+$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: Add --enable-microsoft to configure, enable native installation kits
+Using index info to reconstruct a base tree...
+M       Unix/configure
+<stdin>:77: trailing whitespace.
+    case "`uname -m`" in    
+<stdin>:82: trailing whitespace.
+        
+warning: 2 lines add whitespace errors.
+Falling back to patching base and 3-way merge...
+Auto-merging Unix/configure
+CONFLICT (content): Merge conflict in Unix/configure
+Recorded preimage for 'Unix/configure'
+Failed to merge in the changes.
+Patch failed at 0001 Add --enable-microsoft to configure, enable native installation kits
+The copy of the patch that failed is found in:
+   /home/jeffcof/dev/bld-omi/.git/modules/omi/rebase-apply/patch
+```
+
+When you have resolved this problem, run "git rebase --continue".
+If you prefer to skip this patch, run "git rebase --skip" instead.
+To check out the original branch and stop rebasing, run "git rebase --abort".
+
+In this particular case, there was a problem merging changes to file `Unix/configure`.
+For merge conflicts, the output from `git status` is very useful:
+
+```
+$ git status
+# HEAD detached at 05ada53
+# You are currently rebasing branch 'jeff-msft-build' on '05ada53'.
+#   (fix conflicts and then run "git rebase --continue")
+#   (use "git rebase --skip" to skip this patch)
+#   (use "git rebase --abort" to check out the original branch)
+#
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   Unix/build.mak
+#
+# Unmerged paths:
+#   (use "git reset HEAD <file>..." to unstage)
+#   (use "git add <file>..." to mark resolution)
+#
+#       both modified:      Unix/configure
+#
+```
+
+This clearly shows what your options are (in the first few lines of the status
+message). Furthermore, you can see that `Unix/configure` is unmerged. Looking at
+this file with an editor will show the follow changes to this file:
+
+```
+<<<<<<< HEAD
+    --show-version)
+        echo $version
+        exit 0
+        ;;
+=======
+    --enable-microsoft)
+      enable_preexec=1
+      prefix=/opt/omi
+      localstatedir=/var/opt/omi
+      sysconfdir=/etc/opt/omi/conf
+      certsdir=/etc/opt/omi/ssl
+      enable_native_kits=1
+
+      if [ "`uname -s`" = "Linux" ]; then
+          enable_ulinux=1
+      fi
+      ;;
+
+    --enable-native-kits)
+      enable_native_kits=1
+      ;;
+
+    --enable-ulinux)
+      if [ "`uname -s`" != "Linux" ]; then
+          echo "The --enable-ulinux option is only valid on the Linux platform."
+          exit 1
+      fi
+
+      enable_ulinux=1
+      ;;
+>>>>>>> Add --enable-microsoft to configure, enable native installation kits
+```
+
+This indicates the changes before your change, as well as the changes that
+you have made to the file. Running command `git checkout --conflict=diff3` might
+be useful as well. After running the command, the conflict in `Unix/configure`
+looks like this:
+
+```
+<<<<<<< ours
+    --show-version)
+        echo $version
+        exit 0
+        ;;
+
+||||||| base
+=======
+    --enable-microsoft)
+      enable_preexec=1
+      prefix=/opt/omi
+      localstatedir=/var/opt/omi
+      sysconfdir=/etc/opt/omi/conf
+      certsdir=/etc/opt/omi/ssl
+      enable_native_kits=1
+
+      if [ "`uname -s`" = "Linux" ]; then
+          enable_ulinux=1
+      fi
+      ;;
+
+    --enable-native-kits)
+      enable_native_kits=1
+      ;;
+
+    --enable-ulinux)
+      if [ "`uname -s`" != "Linux" ]; then
+          echo "The --enable-ulinux option is only valid on the Linux platform."
+          exit 1
+      fi
+
+      enable_ulinux=1
+      ;;
+
+>>>>>>> theirs
+```
+
+This shows the original (base) change, the change causing the conflict
+(labeled as `ours`), and your change (labeled as `theirs`).
+
+In this particular case, all that's necessary is to remove the markers
+added by git (to show the conflict). Both `--show-version` and `--enable-microsoft`
+are correct, as follows:
+
+```
+    --show-version)
+        echo $version
+        exit 0
+        ;;
+
+    --enable-microsoft)
+      enable_preexec=1
+      prefix=/opt/omi
+      localstatedir=/var/opt/omi
+      sysconfdir=/etc/opt/omi/conf
+      certsdir=/etc/opt/omi/ssl
+      enable_native_kits=1
+
+      if [ "`uname -s`" = "Linux" ]; then
+          enable_ulinux=1 
+      fi
+      ;;
+
+    --enable-native-kits)
+      enable_native_kits=1
+      ;;
+
+    --enable-ulinux)
+      if [ "`uname -s`" != "Linux" ]; then
+          echo "The --enable-ulinux option is only valid on the Linux platform."
+          exit 1 
+      fi
+
+      enable_ulinux=1
+      ;;
+```
+
+At this point, you add the modified file to the commit list and follow
+the instructions in the `git status` output:
+
+```
+jeffcof:omi> git add Unix/configure
+jeffcof:omi> git rebase --continue
+Applying: Add --enable-microsoft to configure, enable native installation kits
+Recorded resolution for 'Unix/configure'.
+jeffcof:omi>
+```
+
+Output from `git status` now shows that your merge is complete:
+
+```
+> git status
+# On branch jeff-msft-build
+# Your branch and 'origin/jeff-msft-build' have diverged,
+# and have 1 and 1 different commit each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+Nothing to commit, working directory clean
+> 
+```
+
+You can update your branch on the server with a command like `git push --force`.
 
 #### Managing submodules
 
