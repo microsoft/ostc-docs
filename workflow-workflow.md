@@ -10,6 +10,7 @@ project.
 - [Merge](#merge)
 - [Cleanup](#cleanup)
 - [Resolving Merge Conflicts](#resolving-merge-conflicts)
+- [Squashing Commit Messages](#squashing-commit-messages)
 - [Managing Submodules](#managing-submodules)
 
 -----
@@ -95,6 +96,9 @@ git push --force
 If you use `git commit --amend`, an editor will be launched for you
 to change the commit message. To use the identical commit message as
 earlier, use `git commit --amend --no-edit`.
+
+- If you do need to squash commit messages, see
+[Squashing Commit Messages](#squashing-commit-messages).
 
 - When your code is tested, you are ready to create a [Pull Request]
 (#pull-requests) to ask for code reviews.
@@ -373,6 +377,238 @@ Nothing to commit, working directory clean
 ```
 
 You can update your branch on the server with a command like `git push --force`.
+
+#### Squashing Commit Messages
+
+If you committed lots of changes in the scope of a single change (say lots
+of iterations), you will likely want to "squash" your commits to a single
+commit message appropriate for final checkin. Fortunately, the `git rebase`
+command makes this easy.
+
+As an example, say `git lol` produces output such as:
+
+```
+* b69be6f (HEAD, origin/v-brucc-master-pbuild, v-brucc-master-pbuild) Ending comma breaks solaris build
+* 3334a09 MI_Application_InitializeV1 not available in libmiapi.a so link libmi.so
+* f39d250 line endings break solaris
+* 529b908 Return breaks build on solaris
+* ab31a8b Changes required by aix
+* 27fdc33 More changes for pbuild
+* 0f8c298 changes to make pbuild owrk
+* 81ebc04 (origin/master, origin/HEAD, master) Removed dos file endings (#73)
+```
+
+We can see that commit hashes 0f8c298..b69be6f are all part of a "single
+change", and should be squashed to a single commit message. Let's do this
+through interactive rebasing with a command like:
+
+```
+git rebase -i 0f8c298..b69be6f
+```
+
+This could also be done with a command like:
+
+```
+git rebase -i HEAD~7
+```
+
+to pick up the prior 7 commits.
+
+This will launch your editor of choice (from `git config` settings) with
+output similar to:
+
+```
+pick 0f8c298 changes to make pbuild owrk
+pick 27fdc33 More changes for pbuild
+pick ab31a8b Changes required by aix
+pick 529b908 Return breaks build on solaris
+pick f39d250 line endings break solaris
+pick 3334a09 MI_Application_InitializeV1 not available in libmiapi.a so link libmi.so
+pick b69be6f Ending comma breaks solaris build
+
+# Rebase 60709da..b69be6f onto 60709da
+#
+# Commands:
+#  p, pick = use commit
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#
+```
+
+As you can see, you have plenty of options available to you from this
+screen. To squash everything into one commit, change the first lines
+of the file as follows.
+
+```
+pick 0f8c298 changes to make pbuild owrk
+squash 27fdc33 More changes for pbuild
+squash ab31a8b Changes required by aix
+squash 529b908 Return breaks build on solaris
+squash f39d250 line endings break solaris
+squash 3334a09 MI_Application_InitializeV1 not available in libmiapi.a so link libmi.so
+squash b69be6f Ending comma breaks solaris build
+
+# Rebase 60709da..b69be6f onto 60709da
+#
+# Commands:
+#  p, pick = use commit
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#
+```
+
+This tells git to combine all seven commits into the first commit in
+the list. Once this is done and saved, another editor pops up with the
+following:
+
+```
+# This is a combination of 7 commits.
+# The first commit's message is:
+changes to make pbuild owrk
+
+# Thisis the 2nd commit message:
+
+More changes for pbuild
+
+# This is the 3rd commit message:
+
+Changes required by aix
+
+# This is the 4th commit message:
+
+Return breaks build on solaris
+
+# This is the 5th commit message:
+
+line endings break solaris
+
+# This is the 6th commit message:
+
+MI_Application_InitializeV1 not available in libmiapi.a so link libmi.so
+
+# This is the 7th commit message:
+
+Ending comma breaks solaris build
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# HEAD detached from 0f8c298
+# You are currently editing a commit while rebasing branch 'v-brucc-master-pbuild' on 5a6e8f7
+#
+# Changes to be committed:
+#   (use "git reset HEAD^1 <file>..." to unstage)
+#
+#       modified:   Unix/base/messages.h
+#       modified:   Unix/build.mak
+#       modified:   Unix/buildtool
+#       modified:   Unix/codec/mof/parser/mof.qualifiers.h
+#       modified:   Unix/codec/mof/parser/moflex.c
+#       modified:   Unix/codec/mof/parser/mofy.redef.h
+#       modified:   Unix/common/MI.h
+#       modified:   Unix/common/common.h
+#       modified:   Unix/configure
+#       modified:   Unix/disp/agentmgr.c
+#       modified:   Unix/mak/rules.mak
+#       modified:   Unix/midll/GNUmakefile
+#       new file:   Unix/midll/libmi.exp
+#       modified:   Unix/pal/palcommon.h
+#       modified:   Unix/providers/identify/GNUmakefile
+#       modified:   Unix/tests/codec/mof/blue/consts.c
+#       modified:   Unix/tests/codec/mof/blue/test_lex.cpp
+#       modified:   Unix/tests/codec/mof/blue/test_mofserializer.cpp
+#       modified:   Unix/tests/codec/mof/blue/test_parser.cpp
+#
+```
+
+Since we're combining so many commits, git allows you to modify the
+new commit's message based on the rest of the commits involved in the
+process. Edit the message as you see fit, as shown below:
+
+```
+Changes to build & run regress on AIX, HP, and Solaris platforms
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# HEAD detached from 0f8c298
+# You are currently editing a commit while rebasing branch 'v-brucc-master-pbuild' on 5a6e8f7
+#
+# Changes to be committed:
+#   (use "git reset HEAD^1 <file>..." to unstage)
+#
+#       modified:   Unix/base/messages.h
+#       modified:   Unix/build.mak
+#       modified:   Unix/buildtool
+#       modified:   Unix/codec/mof/parser/mof.qualifiers.h
+#       modified:   Unix/codec/mof/parser/moflex.c
+#       modified:   Unix/codec/mof/parser/mofy.redef.h
+#       modified:   Unix/common/MI.h
+#       modified:   Unix/common/common.h
+#       modified:   Unix/configure
+#       modified:   Unix/disp/agentmgr.c
+#       modified:   Unix/mak/rules.mak
+#       modified:   Unix/midll/GNUmakefile
+#       new file:   Unix/midll/libmi.exp
+#       modified:   Unix/pal/palcommon.h
+#       modified:   Unix/providers/identify/GNUmakefile
+#       modified:   Unix/tests/codec/mof/blue/consts.c
+#       modified:   Unix/tests/codec/mof/blue/test_lex.cpp
+#       modified:   Unix/tests/codec/mof/blue/test_mofserializer.cpp
+#       modified:   Unix/tests/codec/mof/blue/test_parser.cpp
+#
+```
+
+Save the file and exit the editor. Once that's done, your commits have
+been successfully squashed!
+
+If we now do a `git log`, we see output such as:
+
+```
+commit 5a6e8f7 (HEAD, v-brucc-master-pbuild)
+Author: Bruce Campbell <yakman2020@users.noreply.github.com>
+Date:   Fri Sep 23 09:56:16 2016
+
+    Changes to build & run regress on AIX, HP, and Solaris platforms
+    
+commit 81ebc04 (origin/master, origin/HEAD, master)
+Author: Bruce Campbell <yakman2020@users.noreply.github.com>
+Date:   Wed Sep 21 07:50:34 2016
+
+    Removed dos file endings (#73)
+```
+
+The `git status` command indicates:
+
+```
+# On branch v-brucc-master-pbuild
+# Your branch and 'origin/v-brucc-master-pbuild' have diverged,
+# and have 1 and 7 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+nothing to commit, working directory clean
+```
+
+Because the `v-brucc-master-pbuild` branch is now divergent from
+the server branch (as indicated in the above status output), the
+branch must be force-pushed to the server:
+
+```
+> git push --force
+Counting objects: 72, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (34/34), done.
+Writing objects: 100% (37/37), 7.99 KiB | 0 bytes/s, done.
+Total 37 (delta 28), reused 5 (delta 2)
+remote: Resolving deltas: 100% (28/28), completed with 28 local objects.
+To git@github.com:Microsoft/omi.git
+ + b69be6f...3d49ff1 HEAD -> v-brucc-master-pbuild (forced update)
+>
+```
 
 #### Managing submodules
 
