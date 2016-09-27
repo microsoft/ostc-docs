@@ -9,6 +9,9 @@ project.
 - [Reviewing Changes](#reviewing-changes)
 - [Merge](#merge)
 - [Cleanup](#cleanup)
+
+Other common operations that you may find useful include:
+
 - [Resolving Merge Conflicts](#resolving-merge-conflicts)
 - [Squashing Commit Messages](#squashing-commit-messages)
 - [Managing Submodules](#managing-submodules)
