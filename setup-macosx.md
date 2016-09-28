@@ -214,7 +214,7 @@ Since our macOS systems are shared, please check if a GDB certificate has alread
 
 Codesigning GDB needs to be done each time GDB updates, XCode updates, or the certificate expires.
 
-#### Creating a New Virtual Machine
+### Creating a New Virtual Machine
 
 To create a new VM in VMware fusion, you must first download the
 operating system that you wish to use (i.e. El Capitan) from the App
