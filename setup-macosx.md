@@ -22,6 +22,8 @@ maintenance to these instructions.
   * [Enable root Account](#enable-root-account)
   * [Set Up hostname](#set-up-hostname)
   * [Install updatedns](#install-updatedns)
+  * [Install Homebrew](#install-homebrew)
+  * [Codesign GDB](#codesign-gdb)
 * [Creating a New Virtual Machine](#creating-a-new-virtual-machine)
 
 -----
@@ -181,6 +183,36 @@ cd updatedns
 
 At this point, updatedns should run automatically and fix the DNS
 resolvers to use the SCX domain servers.
+
+#### Install Homebrew
+
+[Homebrew][] is "the missing package manager for macOS."
+
+Follow the installation instructions from [Homebrew][].
+The short of it is reproduced here:
+
+```sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Next, fix the `/usr/local` directory (used by [Homebrew][]) permissions to be writable by the `staff` group:
+> This is needed because Homebrew (and macOS systems in general) tend to expect single users, not groups.
+
+```sh
+sudo chgrp -R staff /usr/local
+sudo chmod -R g+w /usr/local
+```
+
+[homebrew]: http://brew.sh/
+
+#### Codesign GDB
+
+Per the Homebrew installation notes, "gdb requires special privileges to access Mach ports.
+You will need to codesign the binary. For instructions, see:" [BuildingOnDarwin](https://sourceware.org/gdb/wiki/BuildingOnDarwin).
+
+Since our macOS systems are shared, please check if a GDB certificate has already been created.
+
+Codesigning GDB needs to be done each time GDB updates, XCode updates, or the certificate expires.
 
 #### Creating a New Virtual Machine
 
