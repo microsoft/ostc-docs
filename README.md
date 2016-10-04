@@ -24,11 +24,12 @@ has useful links on how to use git.
 1. Infrastructure Information
   1. [Useful Network Resources](network-resources.md)
   2. [Build Hosts](setup-buildhosts.md)
-  3. Development Hosts
-  4. [Migrating from TFS](tfs-migration.md)
-  5. [Set up Hyper-V DNS configuration](https://github.com/jeffaco/msft-updatedns)
-  6. [Installing git on UNIX/Linux](gitinstall-readme.md)
-  7. [Setting up Mac OS/X systems](setup-macosx.md)
+  3. [Build System Dependencies](setup-builddeps.md)
+  4. Development Hosts
+  5. [Migrating from TFS](tfs-migration.md)
+  6. [Set up Hyper-V DNS configuration](https://github.com/jeffaco/msft-updatedns)
+  7. [Installing git on UNIX/Linux](gitinstall-readme.md)
+  8. [Setting up Mac OS/X systems](setup-macosx.md)
 2. Setup Instructions for Code Contributors
   1. [Setting up SSH public/private keys](setup-sshkeys.md)
   2. [Setting up git environment](setup-git.md)
