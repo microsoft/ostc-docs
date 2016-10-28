@@ -41,3 +41,14 @@ has useful links on how to use git.
 4. Administrative Information
   1. [Tagging Releases](workflow-tagging.md)
   2. [Creating a Hotfix Release](workflow-hotfix.md)
+
+-----
+
+### Code of Conduct
+
+This project has adopted the [Microsoft Open Source Code of Conduct]
+(https://opensource.microsoft.com/codeofconduct/).  For more
+information see the [Code of Conduct FAQ]
+(https://opensource.microsoft.com/codeofconduct/faq/) or contact
+[opencode@microsoft.com](mailto:opencode@microsoft.com) with any
+additional questions or comments.
