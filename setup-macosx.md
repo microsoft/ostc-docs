@@ -21,8 +21,10 @@ maintenance to these instructions.
   * [System Preferences](#system-preferences)
   * [Enable root Account](#enable-root-account)
   * [Set Up hostname](#set-up-hostname)
+  * [Install Development Tools](#install-development-tools)
   * [Install updatedns](#install-updatedns)
   * [Install Homebrew](#install-homebrew)
+  * [Install Homebrew Packages](#install-homebrew-packages)
   * [Codesign GDB](#codesign-gdb)
 * [Creating a New Virtual Machine](#creating-a-new-virtual-machine)
 
@@ -136,7 +138,8 @@ System Preferences screens:
 
 #### Enable root Account
 
-This step is **NOT** needed on the infrastructure system.
+This step is **NOT** needed on the infrastructure system, nor on build
+servers. This is only needed on Developer and Test systems.
 
 To enable the root account:
 
@@ -157,22 +160,41 @@ sudo scutil --set HostName <hostname>
 where `<hostname>` is the name of your host. Do not append scx.com to
 the hostname.
 
+#### Install Development Tools
+
+There are two choices for development tools: `command line tools` and
+`Xcode`. Because `Xcode` is quite large, we only recommend it if needed.
+
+Command line tools are sufficent for 'git' (and thus updatedns), as
+well as actually building/linking our products. Thus, we recommend the
+following tools to be installed based on system type:
+
+System Type | Development Tools
+----------- | -----------------
+Infrastructure | Command line tools
+Build System | Command line tools
+Development System | Xcode
+Test System | Command line tools
+
+To install `command line tools`, just invoke `git` from the command
+line (from a GUI connection to the Mac). If the tools are not
+present, you'll be prompted what to install.
+
+Note that `Xcode` is quite large, and will take several minutes to
+install. The gdb debugger only ships with `Xcode`, not the command
+line tools.
+
 #### Install updatedns
 
-This step differs between the infrastructure system and virtual
-machines.
-
-* Only on virtual machines, install Xcode from the App Store. This is
-a sizable download and will take a few minutes.
+This step differs slightly based on the type of system. See
+[Install Development Tools](#install-development-tools)
+for guidance on what should be installed prior to installing updatedns.
 
 * Launch a command terminal, and type:
 
 ```
 git clone https://github.com/jeffaco/msft-updatedns.git updatedns
 ```
-
-If you're on an infrasture system, you'll get a prompt about installing Xcode
-or installing command line tools. You want to install the command line tools only.
 
 Once msft-updatedns is downloaded, issue the following commands:
 
@@ -205,14 +227,27 @@ sudo chmod -R g+w /usr/local
 
 [homebrew]: http://brew.sh/
 
+#### Install Homebrew Packages
+
+Once [Homebrew][] is installed, several [Homebrew][] packages must be
+installed as well. This can be done with the following command:
+
+```
+brew install pkg-config openssl
+```
+
 #### Codesign GDB
 
-Per the Homebrew installation notes, "gdb requires special privileges to access Mach ports.
-You will need to codesign the binary. For instructions, see:" [BuildingOnDarwin](https://sourceware.org/gdb/wiki/BuildingOnDarwin).
+Per the Homebrew installation notes, "gdb" requires special privileges
+to access machine ports.  You will need to codesign the binary. For
+instructions, see:
+[BuildingOnDarwin](https://sourceware.org/gdb/wiki/BuildingOnDarwin).
 
-Since our macOS systems are shared, please check if a GDB certificate has already been created.
+Since our macOS systems are shared, please check if a GDB certificate
+has already been created.
 
-Codesigning GDB needs to be done each time GDB updates, XCode updates, or the certificate expires.
+Codesigning GDB needs to be done each time GDB updates, XCode updates,
+or the certificate expires.
 
 ### Creating a New Virtual Machine
 
