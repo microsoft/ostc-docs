@@ -233,7 +233,7 @@ Once [Homebrew][] is installed, several [Homebrew][] packages must be
 installed as well. This can be done with the following command:
 
 ```
-brew install pkg-config openssl
+brew install pkg-config cmake openssl
 ```
 
 #### Codesign GDB
