@@ -26,6 +26,7 @@ maintenance to these instructions.
   * [Install Homebrew](#install-homebrew)
   * [Install Homebrew Packages](#install-homebrew-packages)
   * [Codesign GDB](#codesign-gdb)
+  * [Increase Screen Resolution](#increase-screen-resolution)
 * [Creating a New Virtual Machine](#creating-a-new-virtual-machine)
 
 -----
@@ -248,6 +249,34 @@ has already been created.
 
 Codesigning GDB needs to be done each time GDB updates, XCode updates,
 or the certificate expires.
+
+#### Increase Screen Resolution
+
+The video resolution of Mac Virtual Machines are rather limited to
+conserve overall resources in a heavily hosted environment. In rare
+situtions (when developers must connect using VNC to the Mac routinely),
+it may be necessary to increase the screen resolution of a virutal
+machine.
+
+[VMware KB Article 1003][] discusses how to increase the screen
+resolution for all of their products. For VMware Fusion, the steps
+are roughly as follows:
+
+1. Power off the virtual machine,
+2. Open the .vmx file on the host system (the system running VMware
+server) in a text editor for the virtual machine in question (expand
+shell bundle of the virtual machine to see this).<br><br>
+Add a line to the file as follows: `svga.autodect = TRUE`
+<br><br>
+This file is generally located in the Documents folder for the
+administrative user, but this can be stored elsewhere if desired,
+3. Save the file,
+4. Restart the virtual machine.
+
+If you need extreme screen resolution (unlikely), refer to
+[VMware KB Article 1003].
+
+[VMware KB Article 1003]: https://kb.vmware.com/kb/1003
 
 ### Creating a New Virtual Machine
 
