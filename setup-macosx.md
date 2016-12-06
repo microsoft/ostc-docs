@@ -258,25 +258,54 @@ situtions (when developers must connect using VNC to the Mac routinely),
 it may be necessary to increase the screen resolution of a virutal
 machine.
 
+When this is necessary, both administrative changes and user changes
+must be made to the virtual machine.
+
+##### Increase Screen Resolution: Administrative Changes
+
 [VMware KB Article 1003][] discusses how to increase the screen
 resolution for all of their products. For VMware Fusion, the steps
 are roughly as follows:
 
-1. Power off the virtual machine,
-2. Open the .vmx file on the host system (the system running VMware
+1. Install VMware Tools on the virtual machine,
+2. Power off the virtual machine,
+3. Open the .vmx file on the host system (the system running VMware
 server) in a text editor for the virtual machine in question (expand
 shell bundle of the virtual machine to see this).<br><br>
 Add a line to the file as follows: `svga.autodect = TRUE`
 <br><br>
 This file is generally located in the Documents folder for the
 administrative user, but this can be stored elsewhere if desired,
-3. Save the file,
-4. Restart the virtual machine.
+4. Save the file,
+5. Restart the virtual machine.
 
 If you need extreme screen resolution (unlikely), refer to
 [VMware KB Article 1003].
 
 [VMware KB Article 1003]: https://kb.vmware.com/kb/1003
+
+##### Increase Screen Resolution: User Changes
+
+Once the administrative changes has been completed and the virtual
+machine has been rebooted, then the user of the virutal machine must
+inform the VMware Tools package of the desired resolution.
+
+This must be done via the command line on the virtual machine. The
+user should SSH to the host in question (or execute the command in
+a terminal window on the virutal machine) and enter a command like:
+
+```
+cd /Library/Application\ Support/VMware\ Tools
+./vmware-resolutionSet 1920 1080
+```
+
+where `1920` is the requested width and `1080` is the requested
+height. Any width and height may be requested.
+
+Beware that many VNC clients will resize or scale the window based
+on the VNC client physical window size. Be certain that your VNC
+client is not configured to do this, or that the display window of
+the VNC client is large enough to accomodate your requested resolution.
 
 ### Creating a New Virtual Machine
 
