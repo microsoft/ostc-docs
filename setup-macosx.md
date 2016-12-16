@@ -272,7 +272,7 @@ are roughly as follows:
 3. Open the .vmx file on the host system (the system running VMware
 server) in a text editor for the virtual machine in question (expand
 shell bundle of the virtual machine to see this).<br><br>
-Add a line to the file as follows: `svga.autodect = TRUE`
+Add a line to the file as follows: `svga.autodetect = TRUE`
 <br><br>
 This file is generally located in the Documents folder for the
 administrative user, but this can be stored elsewhere if desired,
