@@ -240,10 +240,10 @@ brew install pkg-config cmake openssl
 #### Codesign GDB
 
 If practical, it would be better to use the debugger which is provided by
-xcode for debugging purposes. That debugger is much more capable and reliable 
+Xcode for debugging purposes. That debugger is much more capable and reliable 
 than gdb on the mac.  Developers used to using the gdb debugger can find a
-document with translations between gdb and lldb commands at
-(http://llvm.org/svn/llvm-project/lldb/tags/lldb-168/www/lldb-gdb.html).
+document with translations between gdb and lldb commands
+[here](http://llvm.org/svn/llvm-project/lldb/tags/lldb-168/www/lldb-gdb.html).
 
 If you must use gdb, per the Homebrew installation notes, "gdb" requires special privileges
 to access machine ports.  You will need to codesign the binary. For
