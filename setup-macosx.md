@@ -182,7 +182,7 @@ line (from a GUI connection to the Mac). If the tools are not
 present, you'll be prompted what to install.
 
 Note that `Xcode` is quite large, and will take several minutes to
-install. The gdb debugger only ships with `Xcode`, not the command
+install. The lldb debugger only ships with `Xcode`, not the command
 line tools.
 
 #### Install updatedns
@@ -239,7 +239,13 @@ brew install pkg-config cmake openssl
 
 #### Codesign GDB
 
-Per the Homebrew installation notes, "gdb" requires special privileges
+If practical, it would be better to use the debugger which is provided by
+xcode for debugging purposes. That debugger is much more capable and reliable 
+than gdb on the mac.  Developers used to using the gdb debugger can find a
+document with translations between gdb and lldb commands at
+(http://llvm.org/svn/llvm-project/lldb/tags/lldb-168/www/lldb-gdb.html).
+
+If you must use gdb, per the Homebrew installation notes, "gdb" requires special privileges
 to access machine ports.  You will need to codesign the binary. For
 instructions, see:
 [BuildingOnDarwin](https://sourceware.org/gdb/wiki/BuildingOnDarwin).
