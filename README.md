@@ -35,6 +35,7 @@ has useful links on how to use git.
   2. [Setting up git environment](setup-git.md)
   3. [Guidelines for development](setup-rules.md)
   4. [Setting up a machine for build purposes](setup-build.md)
+  5. [Setting up PBUILD hosts](setup-pbuild.md)
 3. Workflow for Code Contributors
   1. [Branching Strategy](workflow-branching.md)
   2. [Workflow for Development](workflow-workflow.md)

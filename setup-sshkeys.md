@@ -90,5 +90,5 @@ As an aside, you can keep remote systems up to date via two mechanisms:
 remote systems.  This lets you maintain the same environment
 everywhere.
 
-2. Use something like [dotfiles] (https://github.com/jeffaco/msft-dotfiles)
+2. Use something like [dotfiles] (https://github.com/jeffaco/dotfiles)
 to store important common files. Then a 'git pull' will update your system.
