@@ -3,6 +3,7 @@
 [pbuild]: https://github.com/Microsoft/pbuild
 [OMI]: https://github.com/Microsoft/omi
 [OSTC Documentation]: https://github.com/Microsoft/ostc-docs
+[build systems]: https://github.com/Microsoft/ostc-tools/tree/master/build
 
 [pbuild][] is a tool used as part of our development process to
 verify that the proposed code changes do not impact regression
@@ -39,10 +40,14 @@ For remote build machines to work properly with [pbuild][], you must
 create `.bash_profile`, `.bashrc`, and SSH key files.
 
 If you don't already have `.bash_profile` and `.bashrc`, you can grab
-the ones used by the [build systems]
-(https://github.com/Microsoft/ostc-tools/tree/master/build). These can
+the ones used by the [build systems][]. These can
 be used as a starting point for you to customize your own files to set
 up your environment however you would like.
+
+**Note that our build processes require certain settings in your bash
+environment.** We suggest starting with the ones from the [build
+systems][] and, if you have existing bash environment files you wish
+to use, incorporate those settings into yours.
 
 Create your SSH keys by following [these instructions]
 (https://github.com/Microsoft/ostc-docs/blob/master/setup-sshkeys.md).
