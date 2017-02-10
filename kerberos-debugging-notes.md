@@ -1,7 +1,7 @@
 # Kerberos Debugging Notes.
 
 - `export KRB5_TRACE=/dev/stdout` will allow lots of logging which is very helpful
-- The default keytab location is not where gss_acquire_cred looks for credentials, but rather /etc/krb5/user/<user id>/client.keytab
+- The default keytab location is not where gss_acquire_cred looks for credentials, but rather /etc/krb5/user/*user-id*/client.keytab
 - that file is not created by default by kinit. It has to be set up with ktutil
    ```
    ktutil:  addent -password -p v-brucc@SCX.COM -k 1 -e RC4-HMAC
