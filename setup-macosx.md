@@ -351,3 +351,14 @@ Machine Type | Size
 Build System | 24GB
 Development System | 64GB
 Test System | 16GB
+
+Note that if you must extend the disk size via VMware, then Mac OS/X
+won't see the additional space automatically. Boot the guest VM and
+issue the command (from a terminal window):
+
+```
+sudo diskutil resizeVolume / R
+```
+
+This will reformat the file system to recognize and use the additional
+disk space.
