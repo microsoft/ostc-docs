@@ -380,6 +380,13 @@ Nothing to commit, working directory clean
 
 You can update your branch on the server with a command like `git push --force`.
 
+To summarize, useful commands when you're trying to resolve a messy merge are:
+
+Command | Purpose
+------- | -------
+`git checkout --conflict=diff3 filename` | See a lot more context around a set of changes to understand what has changed
+`git checkout --ours filename` | Take original changes to a file (and edit your changes in again)
+
 #### Squashing Commit Messages
 
 If you committed lots of changes in the scope of a single change (say lots
