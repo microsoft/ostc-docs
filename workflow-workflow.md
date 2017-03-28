@@ -40,8 +40,8 @@ SCXCore | ```clone --recursive git@github.com:Microsoft/Build-SCXcore.git```
 pal, etc) chekout the *master* branch since it is where active
 development is being made:<br>```git fetch; git checkout master```<br>
 If you have just cloned the super-project, you can also use an alias
-like ```git co-master``` if you followed [Configuring git]
-(setup-git.md) recommendations.
+like ```git co-master``` if you followed [Configuring git](setup-git.md)
+recommendations.
 
 - From the master branch, create a feature branch where you will add
 your contribution. By convention, for feature branch names, we use the
@@ -60,10 +60,9 @@ commit message, like this:
 
 - Use of 'git rebase' is suggested to keep feature branches up to
 date. [Configure git](setup-git.md) for this to work
-properly.  See [rerere documentation]
-(https://git-scm.com/docs/git-rerere) and [rebasing documentation]
-(https://www.git-scm.com/book/en/v2/Git-Branching-Rebasing) for
-further details, but the general workflow is:
+properly.  See [rerere documentation](https://git-scm.com/docs/git-rerere)
+and [rebasing documentation](https://www.git-scm.com/book/en/v2/Git-Branching-Rebasing)
+for further details, but the general workflow is:
 
 ```
 git checkout master
@@ -103,8 +102,8 @@ earlier, use `git commit --amend --no-edit`.
 - If you do need to squash commit messages, see
 [Squashing Commit Messages](#squashing-commit-messages).
 
-- When your code is tested, you are ready to create a [Pull Request]
-(#pull-requests) to ask for code reviews.
+- When your code is tested, you are ready to create a
+[Pull Request](#pull-requests) to ask for code reviews.
 
 #### Pull Requests
 

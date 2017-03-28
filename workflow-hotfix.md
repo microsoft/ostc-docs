@@ -66,14 +66,12 @@ git cherry-pick e596ded
 
 In case of conflict such as:
 
->
-````
-error: could not apply 81e0723... 
-hint: after resolving the conflicts, mark the corrected paths
-hint: with 'git add <paths>' or 'git rm <paths>'
-hint: and commit the result with 'git commit'
-```
->
+>```
+>error: could not apply 81e0723... 
+>hint: after resolving the conflicts, mark the corrected paths
+>hint: with 'git add <paths>' or 'git rm <paths>'
+>hint: and commit the result with 'git commit'
+>```
 
 then perform one of the following:
 
@@ -87,9 +85,9 @@ git cherry-pick continue
 - When you try to cherry pick a merged commit you may get:
 
 >
-```
-fatal: Commit e596ded is a merge but no -m option was given.
-```
+>```
+>fatal: Commit e596ded is a merge but no -m option was given.
+>```
 >
 
 To avoid this issue, use merge instead, like this:
@@ -116,14 +114,14 @@ git lol
 You'll see output such as:
 
 >```
-* a9ccdf5 (HEAD, origin/master, origin/dywu-nxOMSPlugin, origin/HEAD, master) Fix formatting and link in readme
-* 2c3cb16 Update readme.md
-* 6a41725 Update readme.md
-* 087b08f Correct Debian version format of OMI to x.y.z.r (rather than x.y.z-r)
-* d0e6421 (tag: v1.1.1-70) Fix up log rotation for OMI (consider moving to OMI project later)
-* b88c2f7 Explicitly disable -Werror in ./configure
-* 3b8679c Fix compile warnings in EngineHelper
-* 499a8a5 Add instructions to build from source
+>* a9ccdf5 (HEAD, origin/master, origin/dywu-nxOMSPlugin, origin/HEAD, master) Fix formatting and link in readme
+>* 2c3cb16 Update readme.md
+>* 6a41725 Update readme.md
+>* 087b08f Correct Debian version format of OMI to x.y.z.r (rather than x.y.z-r)
+>* d0e6421 (tag: v1.1.1-70) Fix up log rotation for OMI (consider moving to OMI project later)
+>* b88c2f7 Explicitly disable -Werror in ./configure
+>* 3b8679c Fix compile warnings in EngineHelper
+>* 499a8a5 Add instructions to build from source
 >```
 
 Let's say we don't want to ship the three most recent commits in the
@@ -137,18 +135,18 @@ git checkout 087b08f
 This will result in output such as:
 
 >```
-Note: checking out '087b08f'.
+>Note: checking out '087b08f'.
 >
-You are in 'detached HEAD' state. You can look around, make experimental
-changes and commit them, and you can discard any commits you make in this
-state without impacting any branches by performing another checkout.
+>You are in 'detached HEAD' state. You can look around, make experimental
+>changes and commit them, and you can discard any commits you make in this
+>state without impacting any branches by performing another checkout.
 >
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -b with the checkout command again. Example:
+>If you want to create a new branch to retain commits you create, you may
+>do so (now or later) by using -b with the checkout command again. Example:
 >
-  git checkout -b new_branch_name
+>  git checkout -b new_branch_name
 >
-HEAD is now at 087b08f... Correct Debian version format of OMI to x.y.z.r (rather than x.y.z-r)
+>HEAD is now at 087b08f... Correct Debian version format of OMI to x.y.z.r (rather than x.y.z-r)
 >```
 
 Note that the last line helpfully shows the log message for the commit
@@ -171,19 +169,19 @@ later version on the master branch. For example purposes, file
 `omsagent.version` currently contains:
 
 >```
-# -*- mode: Makefile; -*-
-#--------------------------------------------------------------------------------
-# Copyright (c) Microsoft Corporation.  All rights reserved.
-#--------------------------------------------------------------------------------
-# 2015-10-06
-#--------------------------------------------------------------------------------
+># -*- mode: Makefile; -*-
+>#--------------------------------------------------------------------------------
+># Copyright (c) Microsoft Corporation.  All rights reserved.
+>#--------------------------------------------------------------------------------
+># 2015-10-06
+>#--------------------------------------------------------------------------------
 >
-OMS_BUILDVERSION_MAJOR=1
-OMS_BUILDVERSION_MINOR=1
-OMS_BUILDVERSION_PATCH=0
-OMS_BUILDVERSION_BUILDNR=63
-OMS_BUILDVERSION_DATE=20160224
-OMS_BUILDVERSION_STATUS=Developer_Build
+>OMS_BUILDVERSION_MAJOR=1
+>OMS_BUILDVERSION_MINOR=1
+>OMS_BUILDVERSION_PATCH=0
+>OMS_BUILDVERSION_BUILDNR=63
+>OMS_BUILDVERSION_DATE=20160224
+>OMS_BUILDVERSION_STATUS=Developer_Build
 >```
 
 Edit the `OMS_BUILDVERSION_BUILDNR` tag to a larger number, like 64
@@ -201,9 +199,9 @@ Next, set the `omsagent.version` file as needed for your hotfix to
 contain the following lines:
 
 >```
-OMS_BUILDVERSION_BUILDNR=64
-OMS_BUILDVERSION_DATE=20160224
-OMS_BUILDVERSION_STATUS=Release_Build
+>OMS_BUILDVERSION_BUILDNR=64
+>OMS_BUILDVERSION_DATE=20160224
+>OMS_BUILDVERSION_STATUS=Release_Build
 >```
 
 We will use v1.1.0-64 for the hotfix, we anticipate our build date to
@@ -213,16 +211,16 @@ be 02-24-2016, and this will be a *Release_Build* (not a
 If you now issue a `git status` command, you'll see output like:
 
 >```
-# On branch master
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#       modified:   dsc (new commits)
-#       modified:   omsagent (new commits)
-#       modified:   omsagent.version
-#
-no changes added to commit (use "git add" and/or "git commit -a")
+># On branch master
+># Changes not staged for commit:
+>#   (use "git add <file>..." to update what will be committed)
+>#   (use "git checkout -- <file>..." to discard changes in working directory)
+>#
+>#       modified:   dsc (new commits)
+>#       modified:   omsagent (new commits)
+>#       modified:   omsagent.version
+>#
+>no changes added to commit (use "git add" and/or "git commit -a")
 >```
 
 The `dsc` and `omsagent` commit hashes have changed due to our changes
@@ -295,8 +293,8 @@ git lol
 will result in output like:
 
 >```
-* e971421 (HEAD, origin/jeff-hotfix, jeff-hotfix) Fix parameters passed to omsagent.sh for onboarding
-* a7a0a13 (origin/master, origin/HEAD, master) Adding encoding check function to the output plugin
+>* e971421 (HEAD, origin/jeff-hotfix, jeff-hotfix) Fix parameters passed to omsagent.sh for onboarding
+>* a7a0a13 (origin/master, origin/HEAD, master) Adding encoding check function to the output plugin
 >```
 
 We want to go to the master branch, delete branch `jeff-hotfix` (both
@@ -322,7 +320,7 @@ git branch -D jeff-hotfix
 Note the output from `git tag -D jeff-hotfix`:
 
 >```
-Deleted branch jeff-hotfix (was d30524d).
+>Deleted branch jeff-hotfix (was d30524d).
 >```
 
 That (helpfully) gives the commit hash that you need to tag:

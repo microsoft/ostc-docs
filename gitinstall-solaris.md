@@ -32,13 +32,14 @@ To list the packages that were installed:
 
 ##### Installing via Saved Streams
 
-[The OpenCSW Project](https://www.opencsw.org/) allows *streams* to
+[The OpenCSW Project]: https://www.opencsw.org/
+[streams]: https://www.opencsw.org/manual/for-administrators/no-internet-access.html#no-internet-access
+
+[The OpenCSW Project][] allows *streams* to
 be downloaded locally, and for installation of git to happen from
 those streams. To guarentee that we can always install git, even if
-[The OpenCSW Project](https://www.opencsw.org/) is no longer available,
-we have saved [streams]
-(https://www.opencsw.org/manual/for-administrators/no-internet-access.html#no-internet-access)
-to install git on Solaris.
+[The OpenCSW Project][] is no longer available,
+we have saved [streams][] to install git on Solaris.
 
 The file share that contains the Solaris files is:
 

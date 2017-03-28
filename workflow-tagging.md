@@ -17,16 +17,16 @@ document.
 >If you fail to to so, then it's harder for cusotmers to find
 >predictable tags and potentially link against them. In particular,
 >you should avoid sometimes prefixing tags with `v` and sometimes not.
-
+>
 >Here's an example of what NOT to do (done for OMS-Agent-for-Linux):
-
+>
 >```
-1.0.0-47
-v1.0.0-47
-v1.1.0-2
-v1.1.0-28
+>1.0.0-47
+>v1.0.0-47
+>v1.1.0-2
+>v1.1.0-28
 >```
-
+>
 >Tag `1.0.0-47` was created, and external sources linked against
 >that. It's traditional for version tags to be prefixed with `v`,
 >forcing us to have two tags for the same release.
@@ -45,16 +45,16 @@ When doing ```git lol``` (if you followed [Setting up git][]) on the [DSC
 superproject][], you'll see output such as:
 
 >```
-* b574cae (HEAD, origin/master, origin/HEAD, master) Update submodules and version for daily build (v1.1.1-74)
-* 4581e1a Update submodules and version for daily build (v1.1.1-73)
-* f09ee18 Update submodules and version for daily build (v1.1.1-72)
-* 9a3f721 Update submodules and version for daily build (v1.1.1-71)
-* 267290e Update submodules and version for daily build (v1.1.1-70)
-* 7b91046 Update submodules and version for daily build (v1.1.1-69)
-* 6328e68 Update submodules and version for daily build (v1.1.1-68)
-* f29305e Update submodules and version for daily build (v1.1.1-67)
-* 0429b43 Update submodules and version for daily build (v1.1.1-66)
-* 544c0a1 Update submodules and version for daily build (v1.1.1-65)
+>* b574cae (HEAD, origin/master, origin/HEAD, master) Update submodules and version for daily build (v1.1.1-74)
+>* 4581e1a Update submodules and version for daily build (v1.1.1-73)
+>* f09ee18 Update submodules and version for daily build (v1.1.1-72)
+>* 9a3f721 Update submodules and version for daily build (v1.1.1-71)
+>* 267290e Update submodules and version for daily build (v1.1.1-70)
+>* 7b91046 Update submodules and version for daily build (v1.1.1-69)
+>* 6328e68 Update submodules and version for daily build (v1.1.1-68)
+>* f29305e Update submodules and version for daily build (v1.1.1-67)
+>* 0429b43 Update submodules and version for daily build (v1.1.1-66)
+>* 544c0a1 Update submodules and version for daily build (v1.1.1-65)
 >```
 
 To create a tag for, say, v1.1.1-70, then you need to identify the
@@ -69,18 +69,18 @@ git checkout 267290e
 You will get output like the following:
 
 >```
-Note: checking out '267290e'.
+>Note: checking out '267290e'.
 >
-You are in 'detached HEAD' state. You can look around, make experimental
-changes and commit them, and you can discard any commits you make in this
-state without impacting any branches by performing another checkout.
+>You are in 'detached HEAD' state. You can look around, make experimental
+>changes and commit them, and you can discard any commits you make in this
+>state without impacting any branches by performing another checkout.
 >
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -b with the checkout command again. Example:
+>If you want to create a new branch to retain commits you create, you may
+>do so (now or later) by using -b with the checkout command again. Example:
 >
-  git checkout -b new_branch_name
+>  git checkout -b new_branch_name
 >
-HEAD is now at 267290e... Update submodules and version for daily build (v1.1.1-70)
+>HEAD is now at 267290e... Update submodules and version for daily build (v1.1.1-70)
 >```
 
 In particular, note the last line: it shows the commit message for the

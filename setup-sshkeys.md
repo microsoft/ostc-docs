@@ -3,9 +3,9 @@
 We recommend setting up SSH public/private keys to access UNIX/Linux
 systems quickly and effectively:
 
-1. [What is a public-private key] (#what-is-a-public-private-key)
-2. [How to create a public-private key] (#how-to-create-a-public-private-key)
-3. [Keeping remote systems up to date] (#keeping-remote-systems-up-to-date)
+1. [What is a public-private key](#what-is-a-public-private-key)
+2. [How to create a public-private key](#how-to-create-a-public-private-key)
+3. [Keeping remote systems up to date](#keeping-remote-systems-up-to-date)
 
 -----
 
@@ -90,5 +90,5 @@ As an aside, you can keep remote systems up to date via two mechanisms:
 remote systems.  This lets you maintain the same environment
 everywhere.
 
-2. Use something like [dotfiles] (https://github.com/jeffaco/dotfiles)
+2. Use something like [dotfiles](https://github.com/jeffaco/dotfiles)
 to store important common files. Then a 'git pull' will update your system.
