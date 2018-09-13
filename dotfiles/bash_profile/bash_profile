@@ -1,0 +1,246 @@
+# Some applications read the EDITOR variable to determine your favourite text
+# editor. So uncomment the line below and enter the editor of your choice :-)
+#export EDITOR=/usr/bin/vim
+#export EDITOR=/usr/bin/mcedit
+
+test -s ~/.alias && . ~/.alias || true
+
+# Getting an error when running some X-based programs:
+#
+# Couldn't connect to accessibility bus: Failed to connect to socket ...
+#
+# Apparently forwarding accessibility bus over SSH isn't supported.
+# Squelch the error
+
+export NO_AT_BRIDGE=1
+
+#
+# Set up common aliases and enviornment variables
+#
+
+IGNOREEOF=3
+
+#
+# Platform specific setup
+#
+
+# Save path so, if we re-run ourselves, the path doesn't get needlessly long
+
+if [ "${SAVED_PATH:-==Unset==}" = "==Unset==" ]; then
+    export SAVED_PATH="${PATH}"
+else
+    export PATH="${SAVED_PATH}"
+fi
+
+# Some systems have less, some don't - if we don't, just use more
+
+if ( type less > /dev/null 2>&1 ); then
+    export LESS="-ImRs"
+    export PAGER="less"
+else
+    alias less="more"
+    export MORE="-is"
+fi
+
+# For 'ls', use colors if we have them (and use LS_OPTIONS if it exists)
+
+if [ $(uname -s) = "Linux" -a -f /etc/SuSE-release ]; then
+    if [ "${LS_OPTIONS}" != "" ]; then
+	export LS_OPTIONS="${LS_OPTIONS} -p"
+    else
+	alias ls="ls -N --color=tty -T 0 -p"
+    fi
+else
+    alias ls="ls -p"
+fi
+
+# If Rational tools (purify & friends) are around, run initialization files
+# (typically installed in something like:
+#  /opt/rational/releases/PurifyPlus.7.0.0.0-012/i386_linux2/bin)
+
+if [ -f /opt/rational/purifyplus_setup.sh ]; then
+    source /opt/rational/purifyplus_setup.sh > /dev/null
+fi
+
+# Generic settings by O/S
+
+export PATH=/usr/local/bin:$PATH
+
+case `uname -s` in
+    AIX)
+	alias users="users | tr ' ' \"\n\" | sort -u | tr \"\n\" ' '; echo"
+	export PATH=/opt/freeware/bin:/usr/vacpp/bin:$PATH
+
+	# AIX 7.1 appears to have a low data limit, causing dbx grief
+	[ `uname -v` -eq 7 ] && ulimit -d unlimited
+	;;
+
+    Darwin)
+	alias ps-scx="ps -ef | grep cim"
+	alias users="users | tr ' ' \"\n\" | sort -u | tr \"\n\" ' '; echo"
+	;;
+
+    HP-UX)
+	alias users="users | tr ' ' \"\n\" | sort -u | tr \"\n\" ' '; echo"
+
+	export PATH=/opt/java1.5/bin:$PATH
+	export UNIX_STD=2003
+
+        # HP utilities are very sensitive to locale, and some don't work with utf8
+        LANG=C
+        export LANG
+
+        # Be sure we have correct version of 'make'
+        if [ ! -f ~/bin/make ]; then
+            mkdir -p ~/bin
+            ln -s /usr/local/bin/gmake ~/bin/make
+        fi
+        export PATH=~/bin:$PATH
+	;;
+
+    Linux)
+	# alias ps-scx="ps aux | egrep \"cim|scx\""
+	alias users="users | tr ' ' \"\n\" | sort -u | tr \"\n\" ' '; echo"
+	export PATH=$PATH:/usr/sbin
+
+	export PS1="\u:\W> "
+	;;
+
+    SunOS)
+	# On Solaris, emacs has a wierd menu in the minibuffer; clearing LANG gets rid of it
+	alias emacs="LANG= emacs"
+
+	if [ `uname -r` == '5.8' -o `uname -r` == '5.9' ]; then
+	    alias users="who | cut -d\  -f1 | sort -u | tr \"\n\" ' '; echo"
+	else
+	    alias users="users | tr ' ' \"\n\" | sort -u | tr \"\n\" ' '; echo"
+	fi
+
+	# Sun systems put software in an unusual spot (generally not on path)
+	if [ `uname -r` == '5.11' ]; then
+	    export MANPATH="/usr/share/man:/opt/solstudio12.2/man"
+	    export PATH="$PATH:/opt/solstudio12.2/bin"
+	else
+	    export MANPATH="/usr/share/man:/usr/sfw/man:/opt/sfw/man:/opt/SUNWspro/man:/usr/local/man"
+	    export PATH="$PATH:/usr/sfw/bin:/opt/sfw/bin"
+	    export PATH="$PATH:/opt/SUNWspro/bin:/opt/SUNWspro/prod/bin"
+	fi
+
+	export PATH="$PATH:/usr/sbin:/opt/csw/bin"
+	;;
+
+    *)
+	;;
+esac
+
+# Host-specific settings
+#
+# Some hosts (i.e. Mac OSX) give us a fully qualified name - we don't want that
+
+S_HOSTNAME=`hostname`
+S_HOSTNAME=${S_HOSTNAME/\.opsmgr\.lan/}
+
+case $S_HOSTNAME in
+    scxcore-rhel50-01 | scxcore-rhel51-01)
+	export PATH=/usr/java/default/bin:$PATH
+	;;
+esac
+
+unset S_HOSTNAME
+
+# Some additional path stuff
+
+if [ -f /opt/git/bin/git ]; then
+    export PATH=/opt/git/bin:${PATH}
+    unset SSH_ASKPASS
+fi
+
+if [ -f ~/dev/git/myrepos/mr ]; then
+    export PATH=~/dev/git/myrepos:$PATH
+fi
+
+#
+# Support for cmake
+#
+
+# First see if we have /opt/cmake; if so, that overrules all
+
+if [ -d /opt/cmake/bin ]; then
+   export PATH=/opt/cmake/bin:$PATH
+fi
+
+# We may have cmake3, but not cmake; if so, set alias
+
+if type cmake3 > /dev/null 2> /dev/null; then
+   alias cmake=cmake3
+fi
+
+# If ccache is installed, then add it to head of path
+# (easiest way for cmake to use it without command line options)
+
+if [ -d /usr/lib64/ccache ]; then
+   export PATH="/usr/lib64/ccache:$PATH"
+fi
+
+#
+# Support for go (language)
+#
+
+if [ -d /usr/local/go ]; then
+   export PATH=$PATH:/usr/local/go/bin
+
+   export GOPATH=$HOME/go
+   export PATH=$PATH:$GOPATH/bin
+fi
+
+#
+# Support for pyenv
+#
+
+if [ -d ~/.pyenv ]; then
+   export PATH="/home/jeffcof/.pyenv/bin:$PATH"
+   eval "$(pyenv init -)"
+   eval "$(pyenv virtualenv-init -)"
+fi
+
+# Support for rbenv
+if [ -d ~/.rbenv ]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+export PATH=.:~/bin:${PATH}
+
+#
+# Functions
+#
+
+# Function: global_find
+#
+# Search for a string globally throughout a directory structure
+#
+# Parameters:
+#   String to search	(Typically quoted) String to search for
+#   Search Path		Directory search path to begin searching at
+
+global_find_usage()
+{
+    echo "Usage: global_find <search-string> <search-path>" 1>&2
+}
+
+global_find()
+{
+    if [ -z "${1}" -o -z "${2}" ]; then
+	global_find_usage
+	return 1;
+    fi
+
+    echo "Starting search for string \"$1\" in file path \"$2\" ..."
+
+    # Only Linux appears to have '-0' for xargs ...
+    if [ $(uname -s) = "Linux" ]; then
+	find $2 -type f -print0 | xargs -0 grep -i "$1"
+    else
+	find $2 -type f | xargs grep -i "$1"
+    fi
+}

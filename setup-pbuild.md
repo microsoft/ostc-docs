@@ -4,8 +4,8 @@
 [OMI]: https://github.com/Microsoft/omi
 [OSTC Documentation]: https://github.com/Microsoft/ostc-docs
 [build systems]: https://github.com/Microsoft/ostc-tools/tree/master/build
-[Jeff Coffler's dotfiles repository]: https://github.com/jeffaco/dotfiles/blob/master/nix/pbuild/pbuild
-[Jeff Coffler's addme script]: https://github.com/jeffaco/msft-bin/blob/master/addme
+[Jeff Coffler's dotfiles repository]: dotfiles/pbuild/pbuild
+[Jeff Coffler's addme script]: msft-bin/addme
 [VNC Viewer]: https://www.realvnc.com/download/viewer/
 
 [pbuild][] is a tool used as part of our development process to
